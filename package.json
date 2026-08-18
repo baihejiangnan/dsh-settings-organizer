@@ -1,6 +1,6 @@
 {
   "name": "dsh-settings-organizer",
-  "version": "0.4.1",
+  "version": "0.5.0-experimental.4",
   "description": "Customizable, hierarchical settings navigation for DeepSeek Harness.",
   "license": "MIT",
   "type": "module",
