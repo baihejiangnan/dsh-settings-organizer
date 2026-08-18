@@ -48,7 +48,8 @@ dsh plugin --profile web add github:baihejiangnan/dsh-settings-organizer
 
 ## 数据与行为
 
-- 配置保存在当前 DSH Web profile 的浏览器 `localStorage` 中，键名为 `dsh-settings-organizer:v2`；
+- 配置保存在当前 DSH Web profile 中，重启启动器或重建浏览器窗口后仍会恢复；
+- 浏览器 `localStorage`（键名 `dsh-settings-organizer:v2`）仅用于旧版本迁移和服务暂不可用时的回退；
 - 配置包括一级分组、页面归属、折叠状态、是否显示空分组和安全模式状态；
 - 首次打开时会读取当前已渲染的设置页面，并按内置规则归类；
 - 未识别页面会归入“其他扩展”，不会被删除或隐藏；
@@ -63,7 +64,7 @@ dsh plugin --profile web add github:baihejiangnan/dsh-settings-organizer
 - 页面识别依赖设置入口的可见文本；如果其他插件修改入口文字，可能需要手动重新归类；
 - 插件只整理设置侧栏，不会改变设置页面本身的内容或插件加载顺序；
 - 自定义分组仅支持一级；二级导航必须由 DSH 或插件实际注册；
-- 配置是浏览器本地数据，不会自动同步到其他设备或其他浏览器 profile；
+- 配置随当前 DSH profile 保存，不会自动同步到其他设备或其他 profile；
 - 真实 DSH Desktop 的窗口适配、截图和交互验收应在目标 profile 中完成。
 
 ## 开发
