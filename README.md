@@ -4,6 +4,26 @@
 
 插件仅运行在浏览器端：通过 DSH 的 `settings.section` 插槽添加管理页面，并使用 `MutationObserver` 适配设置侧栏的动态渲染。插件不会移动、包裹或克隆 DSH 原生导航节点。
 
+## 界面预览
+
+### 导航管理
+
+管理一级分组，并为 DSH 或插件提供的二级导航设置页面归属。
+
+![导航管理与页面归属](docs/images/navigation-manager.png)
+
+### 分组导航
+
+一级分组可以独立展开或折叠，二级导航保留 DSH 原生页面交互。
+
+![展开后的分组导航](docs/images/grouped-navigation.png)
+
+### 暗色模式
+
+导航结构与管理界面跟随 DSH 的浅色或暗色外观。
+
+![暗色模式下的设置导航](docs/images/dark-mode.png)
+
 当前版本提供：
 
 - 会话、工作区、插件安全、界面扩展等默认一级分组；
