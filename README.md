@@ -1,6 +1,8 @@
 # dsh-settings-organizer
 
-独立的 DSH 设置导航整理插件。它不属于插件安全网，不安装或修改其他插件，只整理设置侧栏的显示结构。
+独立的 DSH Web 设置导航整理插件。它不属于插件安全网，不安装或修改其他插件，只整理设置侧栏的显示结构。
+
+插件仅运行在浏览器端：通过 DSH 的 `settings.section` 插槽添加管理页面，并使用 `MutationObserver` 适配设置侧栏的动态渲染。
 
 当前版本提供：
 
@@ -12,6 +14,8 @@
 - `prefers-reduced-motion` 下关闭动画。
 - 页面归属编辑：把已发现的设置页面移动到任意默认分组；
 - 导航配置导入/导出和恢复默认布局。
+- 最多支持三级分组，可新建、重命名、删除和调整分组顺序；
+- 安全模式可一键恢复原始设置导航。
 
 ```bash
 dsh plugin --profile web add github:baihejiangnan/dsh-settings-organizer
@@ -19,9 +23,32 @@ dsh plugin --profile web add github:baihejiangnan/dsh-settings-organizer
 
 这是独立项目，与 `dsh-plugin-safety-net` 无关。
 
+## 数据与行为
+
+- 配置保存在当前 DSH Web profile 的浏览器 `localStorage` 中，键名为 `dsh-settings-organizer:v2`；
+- 配置包括分组树、页面归属、页面顺序、是否显示空分组和安全模式状态；
+- 首次打开时会读取当前已渲染的设置页面，并按内置规则归类；
+- 未识别页面会归入“其他扩展”，不会被删除或隐藏；
+- “显示原始导航”会启用安全模式，停止重排并恢复原始 DOM 顺序；
+- 导入配置会覆盖当前导航配置，建议先使用“导出”备份。
+
 首次安装时会读取已经存在的设置页面并按默认规则归类。无法识别的页面不会被删除；用户可以在“页面归属”中重新选择分组。空分组默认不显示，但可以开启“显示空分组”。
 
-真实 DSH Desktop 的窗口适配、截图和交互验收应在目标 profile 中完成。
+## 已知限制
+
+- 页面识别依赖设置入口的可见文本；如果其他插件修改入口文字，可能需要手动重新归类；
+- 插件只整理设置侧栏，不会改变设置页面本身的内容或插件加载顺序；
+- 配置是浏览器本地数据，不会自动同步到其他设备或其他浏览器 profile；
+- 真实 DSH Desktop 的窗口适配、截图和交互验收应在目标 profile 中完成。
+
+## 开发
+
+```bash
+pnpm install
+node --check lib/client.js
+```
+
+客户端入口为 `lib/client.js`，插件 host 入口为 `lib/index.js`（当前为空实现）。
 
 ## License
 
